@@ -118,9 +118,6 @@
         // https://www.uuidgenerator.net/
         invites: invites
       },
-      mounted: function () {
-        this.countDown();
-      },
       computed: {
         code: function () {
           var uri = window.location.search.substring(1);
@@ -132,29 +129,29 @@
             return i.id == code
           })
         },
-        countDown: function () {
-          var countDownDate = new Date("Aug 01, 2021 08:00").getTime();
+      },
+      mounted: function () {
+        var countDownDate = new Date("Aug 01, 2021 08:00").getTime();
 
-          var x = setInterval(function () {
-            var now = new Date().getTime();
+        var x = setInterval(function () {
+          var now = new Date().getTime();
 
-            var distance = countDownDate - now;
+          var distance = countDownDate - now;
 
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("count-down").innerHTML = days + "d " + hours + "h " +
-              minutes + "m " + seconds + "s ";
+          document.getElementById("count-down").innerHTML = days + "d " + hours + "h " +
+            minutes + "m " + seconds + "s ";
 
-            // If the count down is finished, write some text
-            if (distance < 0) {
-              clearInterval(x);
-              document.getElementById("count-down").innerHTML = "Live,Now !";
-            }
-          }, 1000);
-        }
+          // If the count down is finished, write some text
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("count-down").innerHTML = "Live,Now !";
+          }
+        }, 1000);
       },
     })
   </script>
