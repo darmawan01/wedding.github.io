@@ -16,95 +16,45 @@
       src: url('./fonts/EasyNovember.ttf') format('truetype');
     }
 
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+    .card,
+    .card-content {
+      padding: 0 !important;
+    }
+
     body {
-      background-color: #eee;
-    }
-
-    .c-container {
-      height: 400x;
-      width: 200px;
-      position: absolute;
-      top: -200px;
-      right: -100px;
-    }
-
-    .centered-text {
-      text-align: center !important;
-    }
-
-    .border-left-right {
-      border-right: 1px solid #ccc;
-      border-left: 1px solid #ccc;
-    }
-
-    .time-info {
-      margin-top: 32px;
-    }
-
-    .time-info p {
-      font-family: 'Raleway';
-    }
-
-    .names {
-      font-family: "EasyNovember"
-    }
-
-    .info {
-      margin-bottom: 8px;
-    }
-
-    .card {
-      background-image: url('./img/leaf.png'), url('./img/leaf2.png');
-      background-size: 150px;
-      background-color: #fff;
-      background-position: 20px 70px, right 20px top 70px;
-      background-repeat: no-repeat;
-      border-radius: 8px;
+      background: url('./img/background.jpg') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
     }
   </style>
 </head>
 
 <body>
   <div class='container' id="app">
-    <div class="row" style="margin-top: 32px">
-      <div class="card col s12 l8 offset-l2">
+    <div class="row" style="margin-top: 100px">
+      <p style="font-family: 'Raleway'">Hi <span style="font-weight: bold" id="to-name">{{ invite.name }}</span>,
+        <span style="float: right;" id="count-down"></span>
+      </p>
+      <div class="card col s12 l12">
         <div class="card-content" v-if="!invite">
           <p>Maaf, kode yang anda masukkan salah.</p>
         </div>
         <div class="card-content" v-if="invite">
-          <p style="font-family: 'Raleway'">Hi <span style="font-weight: bold" id="to-name">{{ invite.name }}</span>,
-            <span style="float: right;" id="count-down"></span>
-          </p>
-          <div class="names" style="text-align: center; margin-top: 32px">
-            <p style="font-size: 48px">Darmawan Zulkifli</p>
-            <p style="font-family: 'Easy November'; font-size: 22px">&</p>
-            <p style="font-size: 48px">Sriani Dewi Astuti</p>
-          </div>
-          <div class="centered-text time-info" style="color:rgba(0,0,0,0.7); font-size: 16px">
-            <p>Together with their parents</p>
-            <p>invite you to celebrate their wedding.</p>
-          </div>
-          <div class="row time-info">
-            <div class="col info s12 l4 centered-text" style="font-size: 14px; color:rgba(0,0,0,0.7);">
-              <p>Akad</p>
-              <p>09.30am</p>
-            </div>
-            <div class="col info s12 l4 centered-text border-left-right" style="font-size: 18px">
-              <p>Sunday,</p>
-              <p>01 Augustus 2021</p>
-            </div>
-            <div class="col info s12 l4 centered-text" style="font-size: 14px;color:rgba(0,0,0,0.7);">
-              <p>Resepsi</p>
-              <p>11.00am</p>
-            </div>
-            <div class="col s12 centered-text time-info">
-              <p>Jl. ....</p>
-              <a style="margin-top: 8px" href="#" class="btn btn-small green lighten-2" target="_blank"><i
-                  class="material-icons left">location_on</i>
-                Map</a>
-            </div>
-          </div>
+          <img :src="content" height="600" alt="" srcset="" class="responsive-img">
         </div>
+      </div>
+      <div class="center-align">
+        <button class="btn-flat" v-on:click="nextPage"><i class="material-icons">keyboard_arrow_left</i></button>
+        <button class="btn-flat" v-on:click="prevPage"><i class="material-icons">keyboard_arrow_right</i></button>
       </div>
     </div>
   </div>
@@ -116,7 +66,9 @@
       el: '#app',
       data: {
         // https://www.uuidgenerator.net/
-        invites: invites
+        invites: invites,
+        page: 0,
+        content: './img/1.jpg'
       },
       computed: {
         code: function () {
@@ -153,6 +105,16 @@
           }
         }, 1000);
       },
+      methods: {
+        nextPage() {
+          this.page++;
+          this.content = './img/1.jpg';
+        },
+        prevPage() {
+          this.page--;
+          this.content = './img/2.jpg';
+        }
+      }
     })
   </script>
 </body>
