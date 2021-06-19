@@ -5,12 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta http-equiv="Cache-control" content="cc">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
 
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <title>Awan & Sri Wedding Invitation</title>
+  <script src="./index.js"></script>
+
   <style>
     @font-face {
       font-family: 'EasyNovember';
@@ -40,71 +41,28 @@
 </head>
 
 <body>
-  <div class='container' id="app">
+  <div class='container'>
     <div class="row" style="margin-top: 5%">
       <p style="font-family: 'Raleway'; font-weight: bold; font-size: 16pt;"></span>
         <span style="float: right;" id="count-down">-</span>
       </p>
       <div class="card col s12 l12">
         <div class="card-content">
-          <img :src="content" height="600" alt="" srcset="" class="responsive-img">
+          <img src="img/1.jpg" id="pages" height="600" alt="" srcset="" class="responsive-img">
         </div>
       </div>
       <div class="center-align">
-        <button class="btn-flat" v-on:click="nextPage"><i class="material-icons">keyboard_arrow_left</i></button>
-        <button class="btn-flat" v-on:click="prevPage"><i class="material-icons">keyboard_arrow_right</i></button>
+        <button class="btn-flat" onclick="firstPage()"><i class="material-icons">keyboard_arrow_left</i></button>
+        <button class="btn-flat" onclick="secondPage()"><i class="material-icons">keyboard_arrow_right</i></button>
       </div>
       <audio autoplay controls style="width: 177px; height: 30px;">
         <source src="mucik.mp3" type="audio/mp3">
       </audio>
     </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-  <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        page: 0,
-        content: './img/1.jpg'
-      },
-      computed: {},
-      mounted: function () {
-        var countDownDate = new Date("Aug 01, 2021 08:00").getTime();
 
-        var x = setInterval(function () {
-          var now = new Date().getTime();
-
-          var distance = countDownDate - now;
-
-          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-          document.getElementById("count-down").innerHTML = days + "d " + hours + "h " +
-            minutes + "m " + seconds + "s ";
-
-          // If the count down is finished, write some text
-          if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("count-down").innerHTML = "-";
-          }
-        }, 1000);
-      },
-      methods: {
-        nextPage() {
-          this.page++;
-          this.content = './img/1.jpg';
-        },
-        prevPage() {
-          this.page--;
-          this.content = './img/2.jpg';
-        }
-      }
-    })
-  </script>
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 
 </html>
