@@ -42,7 +42,7 @@
   <div class='container' id="app">
     <div class="row" style="margin-top: 100px">
       <p style="font-family: 'Raleway'; font-weight: bold; font-size: 16pt;"></span>
-        <span style="float: right;" id="count-down"></span>
+        <span style="float: right;" id="count-down">-</span>
       </p>
       <div class="card col s12 l12">
         <div class="card-content">
@@ -53,10 +53,8 @@
         <button class="btn-flat" v-on:click="nextPage"><i class="material-icons">keyboard_arrow_left</i></button>
         <button class="btn-flat" v-on:click="prevPage"><i class="material-icons">keyboard_arrow_right</i></button>
       </div>
+      <iframe src="mucik.mp3" type="audio/mp3" allow="autoplay" id="audio" style="display:none"></iframe>
     </div>
-    <audio autoplay>
-      <source src="mucik.mp3" type="audio/mpeg">
-    </audio>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -83,7 +81,7 @@
           var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
           document.getElementById("count-down").innerHTML = days + "d " + hours + "h " +
-            minutes + "m " + seconds + "s " + 'Menjelang Acara';
+            minutes + "m " + seconds + "s ";
 
           // If the count down is finished, write some text
           if (distance < 0) {
