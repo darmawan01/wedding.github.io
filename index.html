@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-  <script src="./js/axios.min.js"></script>
+
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <title>Awan & Sri Wedding Invitation</title>
@@ -41,14 +41,11 @@
 <body>
   <div class='container' id="app">
     <div class="row" style="margin-top: 100px">
-      <p style="font-family: 'Raleway'">Hi <span style="font-weight: bold" id="to-name">{{ invite.name }}</span>,
+      <p style="font-family: 'Raleway'; font-weight: bold; font-size: 16pt;"></span>
         <span style="float: right;" id="count-down"></span>
       </p>
       <div class="card col s12 l12">
-        <div class="card-content" v-if="!invite">
-          <p>Maaf, kode yang anda masukkan salah.</p>
-        </div>
-        <div class="card-content" v-if="invite">
+        <div class="card-content">
           <img :src="content" height="600" alt="" srcset="" class="responsive-img">
         </div>
       </div>
@@ -57,6 +54,9 @@
         <button class="btn-flat" v-on:click="prevPage"><i class="material-icons">keyboard_arrow_right</i></button>
       </div>
     </div>
+    <audio autoplay>
+      <source src="mucik.mp3" type="audio/mpeg">
+    </audio>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -65,23 +65,10 @@
     var app = new Vue({
       el: '#app',
       data: {
-        // https://www.uuidgenerator.net/
-        invites: invites,
         page: 0,
         content: './img/1.jpg'
       },
-      computed: {
-        code: function () {
-          var uri = window.location.search.substring(1);
-          return uri.split('=')[1];
-        },
-        invite: function () {
-          var code = this.code;
-          return this.invites.find(function (i) {
-            return i.id == code
-          })
-        },
-      },
+      computed: {},
       mounted: function () {
         var countDownDate = new Date("Aug 01, 2021 08:00").getTime();
 
@@ -96,12 +83,12 @@
           var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
           document.getElementById("count-down").innerHTML = days + "d " + hours + "h " +
-            minutes + "m " + seconds + "s ";
+            minutes + "m " + seconds + "s " + 'Menjelang Acara';
 
           // If the count down is finished, write some text
           if (distance < 0) {
             clearInterval(x);
-            document.getElementById("count-down").innerHTML = "Live,Now !";
+            document.getElementById("count-down").innerHTML = "-";
           }
         }, 1000);
       },
