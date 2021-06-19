@@ -1,0 +1,13 @@
+CACHE MANIFEST
+# 19-06-2021:v1
+ 
+CACHE:
+index.html
+img/1.jpg
+img/2.jpg
+img/background.jpg
+mucik.mp3
+ 
+NETWORK:
+ 
+FALLBACK:
